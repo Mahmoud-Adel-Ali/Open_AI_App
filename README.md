@@ -1,17 +1,10 @@
-# open_ai_app
+# Open Ai App
 
-A new Flutter project.
+The **Open Ai App** is an AI-powered chat application built with Flutter that allows users to interact with a Generative AI model, send and receive both text and images, and store chat history locally. This project leverages Hive for local data storage and aims to provide an engaging, multimedia-rich user experience.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# open_ai_app" 
+- **Text and Image Chat**: Users can send both text messages and images to the AI model, making conversations more expressive.
+- **Generative AI Integration**: The app uses Open AI to power meaningful and contextually relevant responses.
+- **Local Chat History**: Chat history is stored locally using Hive, enabling users to resume conversations seamlessly.
+- **Responsive Design**: Optimized for various screen sizes, ensuring a smooth experience on mobile, tablet, and desktop.
