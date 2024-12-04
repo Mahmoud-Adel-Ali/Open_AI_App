@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/core/utils/app_colors.dart';
+
+import '../utils/app_colors.dart';
 
 abstract class AppTheme {
-  // light theme
+  // Light theme
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.mainColor,
+      primary: AppColors.white,
+      surface: AppColors.lightCardColor,
+      onSurface: AppColors.lightTextColor,
       brightness: Brightness.light,
     ),
     useMaterial3: true,
   );
 
-  // dark theme
+  // Dark theme
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.mainColor,
+      primary: AppColors.black,
+      surface: AppColors.darkCardColor,
+      onSurface: AppColors.darkTextColor,
       brightness: Brightness.dark,
     ),
     useMaterial3: true,
