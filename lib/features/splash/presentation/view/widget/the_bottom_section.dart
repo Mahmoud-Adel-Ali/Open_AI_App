@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
+import 'package:open_ai_app/features/onboarding/presentation/views/onboarding_view.dart';
 
 import 'custom_bottom_shape.dart';
 
@@ -26,10 +25,13 @@ class _TheBottomSectionState extends State<TheBottomSection> {
         counter++;
         if (counter == 4) {
           timer.cancel();
-          //TODO : navigate to the next view
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const OnboardingView(),
+              ));
         }
         setState(() {});
-        log("Counter is $counter");
       },
     );
   }
