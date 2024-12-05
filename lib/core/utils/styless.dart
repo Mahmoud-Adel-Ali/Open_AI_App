@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_ai_app/core/utils/app_colors.dart';
 
 abstract class Styless {
   //12
@@ -35,5 +36,6 @@ abstract class Styless {
     fontSize: 48.0,
     fontWeight: FontWeight.w700,
     fontFamily: 'Orbitron',
+    color: AppColors.darkTextColor,
   );
 }

@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:open_ai_app/core/utils/styless.dart';
 
 import 'custom_bottom_shape.dart';
 
@@ -22,7 +24,6 @@ class _TheBottomSectionState extends State<TheBottomSection> {
       const Duration(seconds: 3),
       (timer) {
         counter++;
-        //TODO :counter == 3 => show the text
         if (counter == 4) {
           timer.cancel();
           //TODO : navigate to the next view
@@ -35,8 +36,34 @@ class _TheBottomSectionState extends State<TheBottomSection> {
 
   @override
   Widget build(BuildContext context) {
-    return counter == 1
-        ? CustomBottomShape(height: 200.h)
-        : CustomBottomShape(height: 400.h);
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        counter == 1
+            ? CustomBottomShape(height: 200.h)
+            : CustomBottomShape(height: 400.h),
+        counter >= 2 ? const HelloText() : const SizedBox(),
+      ],
+    );
+  }
+}
+
+class HelloText extends StatelessWidget {
+  const HelloText({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeInUpBig(
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        child: const Text(
+          'HELLO !',
+          style: Styless.textBold48,
+        ),
+      ),
+    );
   }
 }
