@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   // Common colors
-  static const Color mainColor = Color(0xFF6200EE); // A seed color for theming
+  static const Color mainColor = Color(0xFF295BFF); // A seed color for theming
   static const Color accentColor = Color(0xFFFF5722); // Accent/secondary color
 
   // Light theme colors
@@ -21,5 +21,6 @@ abstract class AppColors {
   static const Color success = Color(0xFF4CAF50); // Green for success messages
   static const Color warning = Color(0xFFFFC107); // Amber for warnings
   static const Color error = Color(0xFFF44336); // Red for errors
-  static const Color info = Color(0xFF2196F3); // Blue for informational messages
+  static const Color info =
+      Color(0xFF2196F3); // Blue for informational messages
 }
