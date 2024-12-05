@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_ai_app/core/widgets/custom_change_theme_mode_icon.dart';
+import 'package:open_ai_app/features/splash/presentation/view/splash_view.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_cubit.dart';
@@ -22,10 +23,11 @@ class OpenAiApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
             theme: context.read<ThemeCubit>().isDarkTheme
                 ? AppTheme.darkTheme
                 : AppTheme.lightTheme,
-            home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            home: const SplashView(),
           );
         },
       ),
