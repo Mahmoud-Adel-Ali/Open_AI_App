@@ -10,10 +10,8 @@ class RobotFadeImage extends StatelessWidget {
     return FadeInDownBig(
       curve: Curves.fastEaseInToSlowEaseOut,
       delay: const Duration(milliseconds: 100),
-      child: Flexible(
-        child: Image.asset(
-          AppImages.robot1Image,
-        ),
+      child: Image.asset(
+        AppImages.robot1Image,
       ),
     );
   }
