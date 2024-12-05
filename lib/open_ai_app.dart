@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_ai_app/core/widgets/custom_change_theme_mode_icon.dart';
 import 'package:open_ai_app/features/splash/presentation/view/splash_view.dart';
 
@@ -21,13 +22,17 @@ class OpenAiApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            theme: context.read<ThemeCubit>().isDarkTheme
-                ? AppTheme.darkTheme
-                : AppTheme.lightTheme,
-            home: const SplashView(),
+          return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
+              theme: context.read<ThemeCubit>().isDarkTheme
+                  ? AppTheme.darkTheme
+                  : AppTheme.lightTheme,
+              home: const SplashView(),
+            ),
           );
         },
       ),

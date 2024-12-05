@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/widgets/custom_change_theme_mode_icon.dart';
 import 'custom_bottom_shape.dart';
@@ -16,9 +17,18 @@ class SplashViewBody extends StatelessWidget {
           RobotFadeImage(),
           CustomChangeThemeModeIcon(),
           Spacer(),
-          CustomBottomShape(height: 400),
+          TheBottomSe(),
         ],
       ),
     );
+  }
+}
+
+class TheBottomSe extends StatelessWidget {
+  const TheBottomSe({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomBottomShape(height: 200.h);
   }
 }
