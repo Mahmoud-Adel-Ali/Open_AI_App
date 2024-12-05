@@ -10,12 +10,14 @@ abstract class AppColors {
   static const Color lightBackground = Color(0xFFF5F5F5); // Light background
   static const Color lightTextColor = Color(0xFF000000); // Black for text
   static const Color lightCardColor = Color(0xFFFFFFFF); // White cards
+  static const Color lightGreyColor = Color(0xffD9DDFF);
 
   // Dark theme colors
   static const Color black = Colors.black;
   static const Color darkBackground = Color(0xFF121212); // Dark background
   static const Color darkTextColor = Color(0xFFFFFFFF); // White for text
   static const Color darkCardColor = Color(0xFF1E1E1E); // Dark gray cards
+  static const Color darkGreyColor = Color(0xFF121A3A);
 
   // Additional custom colors
   static const Color success = Color(0xFF4CAF50); // Green for success messages
