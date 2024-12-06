@@ -1,28 +1,6 @@
-import 'dart:math';
-
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/core/utils/app_colors.dart';
 
-class CustomBottomShape extends StatelessWidget {
-  const CustomBottomShape({super.key, required this.height});
-  final double height;
-  @override
-  Widget build(BuildContext context) {
-    return FadeInUpBig(
-      delay: const Duration(milliseconds: 500),
-      duration: const Duration(seconds: 2),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 350),
-        height: min(350, height),
-        width: double.infinity,
-        child: CustomPaint(
-          painter: RPSCustomPainter(),
-        ),
-      ),
-    );
-  }
-}
+import '../utils/app_colors.dart';
 
 class RPSCustomPainter extends CustomPainter {
   @override

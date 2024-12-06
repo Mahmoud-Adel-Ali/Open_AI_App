@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
 import 'package:open_ai_app/features/onboarding/presentation/views/onboarding_view.dart';
 
-import 'custom_bottom_shape.dart';
+import 'custom_bottom_section_item.dart';
 
 class TheBottomSection extends StatefulWidget {
   const TheBottomSection({super.key});
@@ -42,8 +42,8 @@ class _TheBottomSectionState extends State<TheBottomSection> {
       alignment: Alignment.center,
       children: [
         counter == 1
-            ? CustomBottomShape(height: 200.h)
-            : CustomBottomShape(height: 400.h),
+            ? CustomBottomBottomSectionItem(height: 200.h)
+            : CustomBottomBottomSectionItem(height: 400.h),
         counter >= 2 ? const HelloText() : const SizedBox(),
       ],
     );
