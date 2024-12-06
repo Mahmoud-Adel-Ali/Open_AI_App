@@ -30,6 +30,7 @@ abstract class Styless {
     fontSize: 24,
     fontWeight: FontWeight.w700,
     fontFamily: 'Orbitron',
+    color: AppColors.darkTextColor,
   );
   //48
   static const TextStyle textBold48 = TextStyle(
