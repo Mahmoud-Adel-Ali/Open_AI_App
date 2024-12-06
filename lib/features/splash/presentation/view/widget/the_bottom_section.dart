@@ -20,7 +20,7 @@ class _TheBottomSectionState extends State<TheBottomSection> {
   void initState() {
     super.initState();
     Timer.periodic(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
       (timer) {
         counter++;
         if (counter == 4) {

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:open_ai_app/features/chat/presentation/views/chat_view.dart';
 
 import '../../../../core/utils/app_images.dart';
 import 'widgets/onboarding_view_body.dart';
@@ -33,7 +34,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                     "Where you can create images find things from photo, and more !",
                 pngImage: AppImages.robot2Image,
                 onPressed: () {
-                  //TODO : to chat view
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChatView()));
                 },
               ),
             ),
