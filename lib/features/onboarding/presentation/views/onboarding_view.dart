@@ -34,7 +34,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     "Where you can create images find things from photo, and more !",
                 pngImage: AppImages.robot2Image,
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ChatView()));
