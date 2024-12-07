@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../../../core/utils/app_images.dart';
 import 'chat_logo.dart';
@@ -18,11 +19,11 @@ class AILoadingMessage extends StatelessWidget {
           // Chat Logo
           const ChatLogo(logo: AppImages.logoChat),
           const SizedBox(width: 12),
-          Flexible(
-            child: Lottie.asset(
-              AppImages.loadingIndicatorLottie,
-              height: 50,
-              fit: BoxFit.scaleDown,
+          SizedBox(
+            width: 50.w,
+            child: SpinKitThreeInOut(
+              color: Theme.of(context).colorScheme.onSecondary,
+              size: 20.0.sp,
             ),
           ),
         ],
