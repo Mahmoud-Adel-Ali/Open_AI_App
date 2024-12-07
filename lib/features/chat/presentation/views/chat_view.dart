@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
+import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_view_body.dart';
 
 import 'widgets/custom_drawer.dart';
 
@@ -17,15 +18,20 @@ class _ChatViewState extends State<ChatView> {
     return Scaffold(
       key: scaffoldKey,
       drawer: const CustomDrawer(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('AI Chat', style: Styless.textMedium20),
-        leading: IconButton(
-          onPressed: () {
-            scaffoldKey.currentState!.openDrawer();
-          },
-          icon: const Icon(Icons.menu),
-        ),
+      appBar: chatViewAppBar(),
+      body: const ChatViewBody(),
+    );
+  }
+
+  AppBar chatViewAppBar() {
+    return AppBar(
+      centerTitle: true,
+      title: const Text('AI Chat', style: Styless.textMedium20),
+      leading: IconButton(
+        onPressed: () {
+          scaffoldKey.currentState!.openDrawer();
+        },
+        icon: const Icon(Icons.menu),
       ),
     );
   }
