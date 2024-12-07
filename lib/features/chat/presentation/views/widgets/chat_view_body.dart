@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/app_images.dart';
-import 'chat_logo.dart';
+import 'ai_loading_message.dart';
+import 'ai_message.dart';
 import 'send_message_section.dart';
 
 class ChatViewBody extends StatelessWidget {
@@ -11,8 +11,12 @@ class ChatViewBody extends StatelessWidget {
     return const Column(
       children: [
         //ToDo :chat list view
-        Expanded(child: SizedBox()),
-        ChatLogo(logo: AppImages.logoChat),
+        // Ex
+        AIMessage(message: "message"),
+        AILoadingMessage(),
+        AIMessage(message: "message"),
+        AIMessage(message: "message"),
+        AIMessage(message: "message"),
         SendMessageSection(),
       ],
     );

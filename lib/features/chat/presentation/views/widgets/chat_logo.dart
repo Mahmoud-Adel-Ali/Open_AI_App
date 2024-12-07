@@ -21,6 +21,7 @@ class ChatLogo extends StatelessWidget {
         shape: BoxShape.circle,
         image: DecorationImage(
           image: AssetImage(logo),
+          fit: BoxFit.cover,
         ),
       ),
     );
