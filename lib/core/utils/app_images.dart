@@ -4,4 +4,5 @@ abstract class AppImages {
   static const String logoChat = "assets/images/openAi_.png";
   static const String loadingIndicatorLottie =
       "assets/images/loading_indicators.json";
+  static const String user = 'assets/images/user.png';
 }
