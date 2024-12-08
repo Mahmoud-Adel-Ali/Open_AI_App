@@ -19,6 +19,12 @@ abstract class Styless {
     fontWeight: FontWeight.w400,
     fontFamily: 'Poppins',
   );
+  //18
+  static const TextStyle textSimeBold18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+  );
   //20
   static const TextStyle textMedium20 = TextStyle(
     fontSize: 20,
