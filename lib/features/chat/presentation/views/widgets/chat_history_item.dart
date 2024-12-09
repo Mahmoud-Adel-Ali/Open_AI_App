@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/styless.dart';
 
 class ChatHistoryItem extends StatelessWidget {
@@ -7,10 +6,14 @@ class ChatHistoryItem extends StatelessWidget {
     super.key,
     required this.chatName,
     required this.date,
+    this.onPressedOnDelete,
+    this.onPressedItem,
   });
 
   final String chatName;
   final String date;
+  final Function()? onPressedOnDelete;
+  final Function()? onPressedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,45 @@ class ChatHistoryItem extends StatelessWidget {
           ),
           subtitle: Text('$date ...'),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showMoreOptionsDialog(context);
+            },
             icon: const Icon(Icons.more_vert),
           ),
-          onTap: () {},
+          onTap: onPressedItem,
         ),
       ),
+    );
+  }
+
+  void _showMoreOptionsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          children: [
+            SimpleDialogOption(
+              onPressed: onPressedOnDelete,
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

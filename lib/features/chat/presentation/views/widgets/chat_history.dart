@@ -12,10 +12,8 @@ class ChatHistory extends StatelessWidget {
     return const CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: ChatHistoryHeader()),
-        SliverToBoxAdapter(child: SizedBox(height: 15)),
         SliverToBoxAdapter(child: EmptyChatHistory()),
         SliverFillRemaining(
-          hasScrollBody: false,
           child: ChatHistoryBody(),
         ),
       ],

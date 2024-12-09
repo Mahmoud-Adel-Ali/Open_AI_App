@@ -16,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
             SizedBox(height: 40),
             CustomDrawerHeader(),
             Divider(),
-            SizedBox(height: 200, child: ChatHistory()),
+            Expanded(child: SizedBox(child: ChatHistory())),
           ],
         ),
       ),

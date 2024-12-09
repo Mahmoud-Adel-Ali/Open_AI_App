@@ -6,8 +6,11 @@ class ChatHistoryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
-      itemCount: 5,
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 10,
+      padding: EdgeInsets.zero,
       itemBuilder: (context, index) => const ChatHistoryItem(
         chatName: 'chatName',
         date: 'date',
