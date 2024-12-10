@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_ai_app/core/theme/theme_cubit.dart';
 import 'package:open_ai_app/features/chat/presentation/manager/chating_cubit.dart';
 
 import 'custom_text_form_field.dart';
@@ -48,6 +47,7 @@ class PickImageIcon extends StatelessWidget {
       child: IconButton(
         onPressed: () {
           // TODO: Add functionality to handle image attachment
+          context.read<ChatingCubit>().pickImages();
         },
         icon: const Icon(Icons.add_photo_alternate),
       ),
