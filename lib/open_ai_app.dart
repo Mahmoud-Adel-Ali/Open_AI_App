@@ -7,6 +7,7 @@ import 'package:open_ai_app/features/splash/presentation/view/splash_view.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_cubit.dart';
 import 'core/theme/theme_state.dart';
+import 'features/chat/presentation/manager/chating_cubit.dart';
 
 class OpenAiApp extends StatelessWidget {
   const OpenAiApp({super.key});
@@ -18,6 +19,9 @@ class OpenAiApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit()..getTheme(),
+        ),
+        BlocProvider<ChatingCubit>(
+          create: (context) => ChatingCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
