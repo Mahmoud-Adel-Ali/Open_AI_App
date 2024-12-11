@@ -34,8 +34,14 @@ abstract class HiveServices {
     return ids;
   }
 
+  //chat boxs
   static Future<void> openChatBox({required String boxName}) async {
     await Hive.openBox<ChatModel>(boxName);
+  }
+
+  static addChatModelToChatBox(ChatModel chatModel, String boxName) {
+    var chatBox = Hive.box<ChatModel>(boxName);
+    chatBox.add(chatModel);
   }
 
   // get chat models with id box
