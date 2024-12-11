@@ -17,7 +17,10 @@ abstract class HiveServices {
 
   static addChatHistory() {
     String id = const Uuid().v7();
-    ChatHistoryIdModel chatHistory = ChatHistoryIdModel(chatHistoryId: id);
+    ChatHistoryIdModel chatHistory = ChatHistoryIdModel(
+      chatHistoryId: id,
+      dateTime: DateTime.now(),
+    );
     var idsBox = Hive.box<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
     idsBox.add(chatHistory);
   }
