@@ -2,6 +2,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:open_ai_app/core/hive/hive_boxs.dart';
 import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
 import 'package:open_ai_app/features/chat/data/models/chat_model.dart';
+import 'package:uuid/uuid.dart';
 
 abstract class HiveServices {
   static Future<void> init() async {
@@ -9,12 +10,21 @@ abstract class HiveServices {
     await openChatHistoryBox();
   }
 
+  // chat history methods
   static Future<void> openChatHistoryBox() async {
     await Hive.openBox<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
   }
 
-  static Future<void> openChatBox({required String boxName}) async {
-    await Hive.openBox<ChatModel>(boxName);
+  static addChatHistory() {
+    String id = const Uuid().v7();
+    ChatHistoryIdModel chatHistory = ChatHistoryIdModel(chatHistoryId: id);
+    var idsBox = Hive.box<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
+    idsBox.add(chatHistory);
+  }
+
+  static deleteChatHistory(ChatHistoryIdModel chatHistory) {
+    Hive.box<ChatModel>(chatHistory.chatHistoryId).clear();
+    chatHistory.delete();
   }
 
   //get chat history ids
@@ -22,6 +32,10 @@ abstract class HiveServices {
     var idsBox = Hive.box<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
     List<ChatHistoryIdModel> ids = idsBox.values.toList();
     return ids;
+  }
+
+  static Future<void> openChatBox({required String boxName}) async {
+    await Hive.openBox<ChatModel>(boxName);
   }
 
   // get chat models with id box
