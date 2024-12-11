@@ -21,7 +21,9 @@ class OpenAiApp extends StatelessWidget {
           create: (context) => ThemeCubit()..getTheme(),
         ),
         BlocProvider<ChatingCubit>(
-          create: (context) => ChatingCubit(),
+          create: (context) => ChatingCubit()
+            ..getChatHistoryIds()
+            ..openLastChatRoom(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
