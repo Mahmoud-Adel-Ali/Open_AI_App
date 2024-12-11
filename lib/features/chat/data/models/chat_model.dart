@@ -1,7 +1,8 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
+
 part 'chat_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class ChatModel extends HiveObject {
   @HiveField(0)
   final String chatId;
