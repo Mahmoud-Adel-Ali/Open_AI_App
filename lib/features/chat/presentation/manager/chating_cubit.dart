@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_ai_app/core/api/api_keys.dart';
+import 'package:open_ai_app/features/chat/data/models/chat_model.dart';
 
 import 'chating_state.dart';
 
@@ -12,23 +11,27 @@ class ChatingCubit extends Cubit<ChatingState> {
   ChatingCubit() : super(ChatingInitial());
   TextEditingController chatTextFeild = TextEditingController();
   List<XFile>? imagesList = [];
-
+  List<ChatModel> currentChat = [];
   // generative model for the text
   late GenerativeModel _textModel;
-  Future<void> sendMessage() async {
+  Future<void> sendMessageToAI() async {
     _textModel = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
       apiKey: ApiKeys.apiKey,
     );
 
-    const prompt = 'Write a story about a magic backpack.';
-    // final content = [Content.text(prompt)];
-    final content = [Content.text(prompt)];
+    final content = [Content.text(chatTextFeild.text)];
     final GenerateContentResponse response =
         await _textModel.generateContent(content);
-    // GenerateContentResponse g = GenerateContentResponse();
-    log("hashCode is '${response.hashCode}'");
-    log("answer is '${response.text}'");
+    final ChatModel chatModel = ChatModel(
+      chatId: response.hashCode.toString(),
+      message: chatTextFeild.text,
+      response: response.text ?? "No Answer",
+      imagesUrls: [],
+      dateTime: DateTime.now(),
+    );
+    currentChat.add(chatModel);
+    emit(AddNewChatModel());
   }
 
 // pick multiple image
