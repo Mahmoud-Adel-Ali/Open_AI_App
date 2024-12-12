@@ -44,6 +44,7 @@ class AddNewConversationDialogBody extends StatelessWidget {
                   text: 'Yes  ✅',
                   onPerssed: () {
                     context.read<ChatingCubit>().openNewChatRoom();
+                    Navigator.pop(context);
                   },
                 ),
               ],

@@ -78,9 +78,11 @@ class ChatingCubit extends Cubit<ChatingState> {
   }
 
   void deleteChatRoom(ChatHistoryIdModel chatHistory) async {
-    await HiveServices.deleteChatHistory(chatHistory);
-    getChatHistoryIds();
-    // emit(GetChatHistoryIdsSuccess());
+    if (chatHistoryIds.length > 1)
+      {
+      await HiveServices.deleteChatHistory(chatHistory);
+      getChatHistoryIds();
+    }
   }
 
 // upload image to AI model
