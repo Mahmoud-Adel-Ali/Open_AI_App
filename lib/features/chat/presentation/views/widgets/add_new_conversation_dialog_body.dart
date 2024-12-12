@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/styless.dart';
+import '../../manager/chating_cubit.dart';
 import 'custom_elevated_button.dart';
 
 class AddNewConversationDialogBody extends StatelessWidget {
@@ -40,7 +42,9 @@ class AddNewConversationDialogBody extends StatelessWidget {
                 ),
                 CustomElevatedButton(
                   text: 'Yes  ✅',
-                  onPerssed: () {},
+                  onPerssed: () {
+                    context.read<ChatingCubit>().openNewChatRoom();
+                  },
                 ),
               ],
             ),

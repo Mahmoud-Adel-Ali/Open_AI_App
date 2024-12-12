@@ -14,7 +14,7 @@ class ChatingCubit extends Cubit<ChatingState> {
   TextEditingController chatTextFeild = TextEditingController();
   List<XFile>? imagesList = [];
   List<ChatModel> currentChat = [];
-  late List<ChatHistoryIdModel> chatHistoryIds;
+  List<ChatHistoryIdModel> chatHistoryIds = [];
   // generative model for the text
   late GenerativeModel _textModel;
   Future<void> sendMessageToAI() async {
@@ -39,6 +39,7 @@ class ChatingCubit extends Cubit<ChatingState> {
 
   //get chat history ids
   void getChatHistoryIds() {
+    chatHistoryIds.clear();
     chatHistoryIds = HiveServices.getChatHistoryIds();
     emit(GetChatHistoryIdsSuccess());
   }
@@ -74,6 +75,12 @@ class ChatingCubit extends Cubit<ChatingState> {
 
   void resetCurrentChatRoom() {
     currentChat = [];
+  }
+
+  void deleteChatRoom(ChatHistoryIdModel chatHistory) async {
+    await HiveServices.deleteChatHistory(chatHistory);
+    getChatHistoryIds();
+    // emit(GetChatHistoryIdsSuccess());
   }
 
 // upload image to AI model

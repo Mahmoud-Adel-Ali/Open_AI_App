@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:open_ai_app/features/chat/presentation/manager/chating_cubit.dart';
 import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_history_item.dart';
+
+import '../../manager/chating_state.dart';
 
 class ChatHistoryBody extends StatelessWidget {
   const ChatHistoryBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) => const ChatHistoryItem(
-        chatName: 'chatName',
-        date: 'date',
-      ),
+    return BlocBuilder<ChatingCubit, ChatingState>(
+      builder: (context, state) {
+        var items = context.read<ChatingCubit>().chatHistoryIds;
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: items.length,
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) => ChatHistoryItem(
+            chatHistoryIdModel: items[index],
+          ),
+        );
+      },
     );
   }
 }

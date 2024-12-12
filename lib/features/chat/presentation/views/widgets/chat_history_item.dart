@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
 import '../../../../../core/utils/styless.dart';
+import '../../manager/chating_cubit.dart';
 
 class ChatHistoryItem extends StatelessWidget {
   const ChatHistoryItem({
     super.key,
-    required this.chatName,
-    required this.date,
-    this.onPressedOnDelete,
     this.onPressedItem,
+    required this.chatHistoryIdModel,
   });
 
-  final String chatName;
-  final String date;
-  final Function()? onPressedOnDelete;
+  final ChatHistoryIdModel chatHistoryIdModel;
   final Function()? onPressedItem;
 
   @override
@@ -28,10 +27,10 @@ class ChatHistoryItem extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           title: Text(
-            chatName,
+            chatHistoryIdModel.chatHistoryId,
             style: Styless.textSimeBold18,
           ),
-          subtitle: Text('$date ...'),
+          subtitle: Text(chatHistoryIdModel.dateTime.toString()),
           trailing: IconButton(
             onPressed: () {
               _showMoreOptionsDialog(context);
@@ -54,7 +53,10 @@ class ChatHistoryItem extends StatelessWidget {
           ),
           children: [
             SimpleDialogOption(
-              onPressed: onPressedOnDelete,
+              onPressed: () {
+                context.read<ChatingCubit>().deleteChatRoom(chatHistoryIdModel);
+                Navigator.pop(context);
+              },
               child: const Row(
                 children: [
                   Icon(
