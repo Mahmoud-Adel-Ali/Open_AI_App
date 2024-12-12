@@ -5,6 +5,7 @@ import 'open_ai_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HiveServices.registerAdapters();
   await CacheHelper().init();
   await HiveServices.init();
   runApp(const OpenAiApp());

@@ -5,6 +5,11 @@ import 'package:open_ai_app/features/chat/data/models/chat_model.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class HiveServices {
+  static void registerAdapters() {
+    Hive.registerAdapter(ChatHistoryIdModelAdapter());
+    Hive.registerAdapter(ChatModelAdapter());
+  }
+
   static Future<void> init() async {
     await Hive.initFlutter();
     await openChatHistoryBox();
@@ -25,9 +30,10 @@ abstract class HiveServices {
     idsBox.add(chatHistory);
   }
 
-  static deleteChatHistory(ChatHistoryIdModel chatHistory) {
-    Hive.box<ChatModel>(chatHistory.chatHistoryId).clear();
-    chatHistory.delete();
+  static Future<void> deleteChatHistory(ChatHistoryIdModel chatHistory) async {
+    await openChatBox(boxName: chatHistory.chatHistoryId);
+    await Hive.box<ChatModel>(chatHistory.chatHistoryId).clear();
+    await chatHistory.delete();
   }
 
   //get chat history ids
