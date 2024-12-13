@@ -78,8 +78,7 @@ class ChatingCubit extends Cubit<ChatingState> {
   }
 
   void deleteChatRoom(ChatHistoryIdModel chatHistory) async {
-    if (chatHistoryIds.length > 1)
-      {
+    if (chatHistoryIds.length > 1) {
       await HiveServices.deleteChatHistory(chatHistory);
       getChatHistoryIds();
     }

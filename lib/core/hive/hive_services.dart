@@ -40,7 +40,13 @@ abstract class HiveServices {
   static List<ChatHistoryIdModel> getChatHistoryIds() {
     var idsBox = Hive.box<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
     List<ChatHistoryIdModel> ids = idsBox.values.toList();
-    return ids;
+    ids = ids.reversed.toList();
+    if (ids.length > 20) {
+      for (int i = 20; i < ids.length; i++) {
+        deleteChatHistory(ids[i]);
+      }
+    }
+    return ids.sublist(0, 20);
   }
 
   //chat boxs
