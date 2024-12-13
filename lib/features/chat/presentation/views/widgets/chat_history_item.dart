@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
+import 'package:open_ai_app/features/chat/presentation/views/widgets/custom_dialog.dart';
 import '../../../../../core/utils/styless.dart';
 import '../../manager/chating_cubit.dart';
 
 class ChatHistoryItem extends StatelessWidget {
   const ChatHistoryItem({
     super.key,
-    this.onPressedItem,
     required this.chatHistoryIdModel,
   });
 
   final ChatHistoryIdModel chatHistoryIdModel;
-  final Function()? onPressedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,19 @@ class ChatHistoryItem extends StatelessWidget {
             },
             icon: const Icon(Icons.more_vert),
           ),
-          onTap: onPressedItem,
+          onTap: () {
+            Navigator.pop(context);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return CustomDialog(
+                  discription:
+                      'Are you sure you want to close current chat page and open other conversation? 🙂',
+                  onTapYes: () {},
+                );
+              },
+            );
+          },
         ),
       ),
     );
