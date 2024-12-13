@@ -19,17 +19,20 @@ class ChatHistoryIdModelAdapter extends TypeAdapter<ChatHistoryIdModel> {
     return ChatHistoryIdModel(
       chatHistoryId: fields[0] as String,
       dateTime: fields[1] as DateTime,
+      chatName: fields[2] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ChatHistoryIdModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.chatHistoryId)
       ..writeByte(1)
-      ..write(obj.dateTime);
+      ..write(obj.dateTime)
+      ..writeByte(2)
+      ..write(obj.chatName);
   }
 
   @override

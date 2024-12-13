@@ -25,6 +25,7 @@ abstract class HiveServices {
     ChatHistoryIdModel chatHistory = ChatHistoryIdModel(
       chatHistoryId: id,
       dateTime: DateTime.now(),
+      chatName: null,
     );
     var idsBox = Hive.box<ChatHistoryIdModel>(HiveBoxs.chatHistoryIdBox);
     idsBox.add(chatHistory);

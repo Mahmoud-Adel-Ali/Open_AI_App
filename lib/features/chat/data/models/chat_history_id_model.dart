@@ -9,6 +9,12 @@ class ChatHistoryIdModel extends HiveObject {
   final String chatHistoryId;
   @HiveField(1)
   final DateTime dateTime;
+  @HiveField(2)
+  final String? chatName;
 
-  ChatHistoryIdModel({required this.chatHistoryId, required this.dateTime});
+  ChatHistoryIdModel({
+    required this.chatHistoryId,
+    required this.dateTime,
+    required this.chatName,
+  });
 }

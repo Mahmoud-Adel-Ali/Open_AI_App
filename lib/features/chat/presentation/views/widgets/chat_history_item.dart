@@ -27,8 +27,10 @@ class ChatHistoryItem extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           title: Text(
-            chatHistoryIdModel.chatHistoryId,
+            chatHistoryIdModel.chatName ?? chatHistoryIdModel.chatHistoryId,
             style: Styless.textSimeBold18,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           subtitle: Text(chatHistoryIdModel.dateTime.toString()),
           trailing: IconButton(
