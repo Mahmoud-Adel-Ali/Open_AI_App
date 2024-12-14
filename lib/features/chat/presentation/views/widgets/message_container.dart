@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/styless.dart';
 
@@ -28,15 +29,14 @@ class MessageContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             message,
-            textAlign: TextAlign.end,
             style: Styless.textSimeBold14.copyWith(color: textColor),
           ),
           Text(
-            dateTime.toString(),
+            DateFormat('hh:mm a').format(dateTime),
             style: Styless.textRegular10.copyWith(color: textColor),
           ),
         ],
