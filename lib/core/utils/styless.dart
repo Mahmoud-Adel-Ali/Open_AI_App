@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:open_ai_app/core/utils/app_colors.dart';
 
 abstract class Styless {
+  //10
+  static const TextStyle textRegular10 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Poppins',
+  );
   //12
   static const TextStyle textSimeBold12 = TextStyle(
     fontSize: 12,

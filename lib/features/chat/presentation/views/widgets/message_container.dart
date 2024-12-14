@@ -6,11 +6,13 @@ class MessageContainer extends StatelessWidget {
   const MessageContainer({
     super.key,
     required this.message,
+    required this.dateTime,
     this.color,
     this.textColor,
   });
 
   final String message;
+  final DateTime dateTime;
   final Color? color;
   final Color? textColor;
 
@@ -25,9 +27,19 @@ class MessageContainer extends StatelessWidget {
         color: color ?? Theme.of(context).colorScheme.onSecondary,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
-        message,
-        style: Styless.textSimeBold14.copyWith(color: textColor),
+      child: Column(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            message,
+            textAlign: TextAlign.end,
+            style: Styless.textSimeBold14.copyWith(color: textColor),
+          ),
+          Text(
+            dateTime.toString(),
+            style: Styless.textRegular10.copyWith(color: textColor),
+          ),
+        ],
       ),
     );
   }

@@ -4,8 +4,9 @@ import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_logo.d
 import 'package:open_ai_app/features/chat/presentation/views/widgets/message_container.dart';
 
 class UserMessage extends StatelessWidget {
-  const UserMessage({super.key, required this.message});
+  const UserMessage({super.key, required this.message, required this.dateTime});
   final String message;
+  final DateTime dateTime;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,6 +16,7 @@ class UserMessage extends StatelessWidget {
         children: [
           MessageContainer(
             message: message,
+            dateTime: dateTime,
             color: Theme.of(context).colorScheme.onSurface,
             textColor: Theme.of(context).colorScheme.primary,
           ),

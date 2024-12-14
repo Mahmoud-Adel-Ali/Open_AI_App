@@ -8,8 +8,10 @@ class AIMessage extends StatelessWidget {
   const AIMessage({
     super.key,
     required this.message,
+    required this.dateTime,
   });
   final String message;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,10 @@ class AIMessage extends StatelessWidget {
           const ChatLogo(logo: AppImages.logoChat),
           const SizedBox(width: 12),
           // Message Container
-          MessageContainer(message: message),
+          MessageContainer(
+            message: message,
+            dateTime: dateTime,
+          ),
         ],
       ),
     );
