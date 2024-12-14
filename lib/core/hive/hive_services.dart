@@ -46,8 +46,9 @@ abstract class HiveServices {
       for (int i = 20; i < ids.length; i++) {
         deleteChatHistory(ids[i]);
       }
+      return ids.sublist(0, 20);
     }
-    return ids.sublist(0, 20);
+    return ids;
   }
 
   //chat boxs
