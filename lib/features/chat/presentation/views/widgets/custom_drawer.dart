@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_history.dart';
 
+import 'chat_history.dart';
 import 'custom_drawer_header.dart';
 
 class CustomDrawer extends StatelessWidget {

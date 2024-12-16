@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:open_ai_app/features/chat/presentation/manager/chating_cubit.dart';
+
+import '../../manager/chating_cubit.dart';
 
 class CustomImagesListView extends StatelessWidget {
   const CustomImagesListView({super.key, required this.images});

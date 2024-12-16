@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_ai_app/features/chat/presentation/manager/chating_cubit.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_history_item.dart';
-
+import '../../manager/chating_cubit.dart';
 import '../../manager/chating_state.dart';
+import 'chat_history_item.dart';
 
 class ChatHistoryBody extends StatelessWidget {
   const ChatHistoryBody({super.key});

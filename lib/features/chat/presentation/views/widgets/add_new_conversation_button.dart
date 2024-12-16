@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/add_new_conversation_dialog_body.dart';
+
+import 'add_new_conversation_dialog_body.dart';
 
 class AddNewConversationButton extends StatelessWidget {
   const AddNewConversationButton({

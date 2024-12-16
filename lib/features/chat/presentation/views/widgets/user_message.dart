@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/core/utils/app_images.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_logo.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/message_container.dart';
+
+import '../../../../../core/utils/app_images.dart';
+import 'chat_logo.dart';
+import 'message_container.dart';
 
 class UserMessage extends StatelessWidget {
   const UserMessage({super.key, required this.message, required this.dateTime});

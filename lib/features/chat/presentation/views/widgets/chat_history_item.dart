@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/custom_dialog.dart';
 import '../../../../../core/utils/styless.dart';
+import '../../../data/models/chat_history_id_model.dart';
 import '../../manager/chating_cubit.dart';
+import 'custom_dialog.dart';
 
 class ChatHistoryItem extends StatelessWidget {
   const ChatHistoryItem({

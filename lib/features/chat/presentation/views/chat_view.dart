@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_view_body.dart';
 
+import 'widgets/chat_view_body.dart';
 import 'widgets/custom_drawer.dart';
 
 class ChatView extends StatefulWidget {
