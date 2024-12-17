@@ -46,7 +46,6 @@ class PickImageIcon extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.onSecondary,
       child: IconButton(
         onPressed: () {
-          // TODO: Add functionality to handle image attachment
           context.read<ChatingCubit>().pickImages();
         },
         icon: const Icon(Icons.add_photo_alternate),
