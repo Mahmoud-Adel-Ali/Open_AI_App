@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_list_view.dart';
-import '../../manager/chating_cubit.dart';
-import '../../manager/chating_state.dart';
 import 'ai_loading_message.dart';
-import 'custom_images_list_view.dart';
+import 'custom_images_list_view_bloc_builder.dart';
 import 'send_message_section.dart';
 
 class ChatViewBody extends StatelessWidget {
@@ -12,17 +9,12 @@ class ChatViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const AILoadingMessage(),
-        const Expanded(child: ChatListView()),
-        BlocBuilder<ChatingCubit, ChatingState>(
-          builder: (context, state) {
-            return CustomImagesListView(
-                images: context.read<ChatingCubit>().imagesList);
-          },
-        ),
-        const SendMessageSection(),
+        AILoadingMessage(),
+        Expanded(child: ChatListView()),
+        CustomImagesListViewBlocBuilder(),
+        SendMessageSection(),
       ],
     );
   }
