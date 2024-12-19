@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../../../../../core/utils/styless.dart';
 import '../../../data/models/chat_model.dart';
 import 'ai_message.dart';
 import 'user_message.dart';
@@ -13,10 +11,6 @@ class ChatListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          DateFormat('hh:mm a').format(chatModel.dateTime),
-          style: Styless.textRegular10,
-        ),
         UserMessage(
           message: chatModel.message,
           dateTime: chatModel.dateTime,
