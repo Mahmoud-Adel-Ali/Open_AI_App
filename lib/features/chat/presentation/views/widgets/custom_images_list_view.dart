@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -21,18 +22,14 @@ class CustomImagesListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Badge(
-                    label: InkWell(
+                  child: InkWell(
                       onTap: () {
-                        context.read<ChatingCubit>().deleteImage(index);
+                        context
+                            .read<ChatingCubit>()
+                            .deleteImage(images![index]);
+                        log(index.toString());
                       },
-                      child: const Icon(
-                        Icons.close,
-                        size: 15,
-                      ),
-                    ),
-                    child: CustomSelectedImageBox(path: images![index].path),
-                  ),
+                      child: CustomSelectedImageBox(path: images![index].path)),
                 );
               },
             ),

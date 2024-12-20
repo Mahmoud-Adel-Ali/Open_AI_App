@@ -12,7 +12,7 @@ import 'chating_state.dart';
 class ChatingCubit extends Cubit<ChatingState> {
   ChatingCubit() : super(ChatingInitial());
   TextEditingController chatTextFeild = TextEditingController();
-  List<XFile>? imagesList = [];
+  List<XFile> imagesList = [];
   List<ChatModel> currentChat = [];
   List<ChatHistoryIdModel> chatHistoryIds = [];
   // generative model for the text
@@ -93,21 +93,22 @@ class ChatingCubit extends Cubit<ChatingState> {
       maxWidth: 800,
     );
     if (images.isNotEmpty) {
-      imagesList = imagesList ?? [];
-      imagesList!.addAll(images);
+      clearImages();
+      imagesList.addAll(images);
       emit(PickImagesSuccess());
     }
   }
 
 //delete image by index
-  void deleteImage(int index) {
-    imagesList!.removeAt(index);
+  void deleteImage(XFile item) {
+    imagesList.remove(item);
+    //removeAt(index);
     emit(PickImagesSuccess());
   }
 
   //clear images list
   void clearImages() {
-    imagesList!.clear();
+    imagesList.clear();
     emit(PickImagesSuccess());
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../manager/chating_cubit.dart';
 import 'custom_text_form_field.dart';
+import 'pick_image_icon.dart';
 
 class SendMessageSection extends StatelessWidget {
   const SendMessageSection({
@@ -30,25 +31,6 @@ class SendMessageSection extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class PickImageIcon extends StatelessWidget {
-  const PickImageIcon({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: Theme.of(context).colorScheme.onSecondary,
-      child: IconButton(
-        onPressed: () {
-          context.read<ChatingCubit>().pickImages();
-        },
-        icon: const Icon(Icons.add_photo_alternate),
       ),
     );
   }
