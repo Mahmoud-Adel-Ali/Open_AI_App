@@ -1,10 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../manager/chating_cubit.dart';
 
 class CustomImagesListView extends StatelessWidget {
@@ -27,7 +25,6 @@ class CustomImagesListView extends StatelessWidget {
                         context
                             .read<ChatingCubit>()
                             .deleteImage(images![index]);
-                        log(index.toString());
                       },
                       child: CustomSelectedImageBox(path: images![index].path)),
                 );
