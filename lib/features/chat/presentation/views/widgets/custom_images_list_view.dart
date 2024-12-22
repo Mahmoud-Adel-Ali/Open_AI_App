@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../manager/chating_cubit.dart';
+import 'custom_selected_image_box.dart';
 
 class CustomImagesListView extends StatelessWidget {
   const CustomImagesListView({super.key, required this.images});
@@ -31,26 +30,5 @@ class CustomImagesListView extends StatelessWidget {
               },
             ),
           );
-  }
-}
-
-class CustomSelectedImageBox extends StatelessWidget {
-  const CustomSelectedImageBox({
-    super.key,
-    required this.path,
-  });
-
-  final String path;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Image.file(
-        File(path),
-        fit: BoxFit.cover,
-        width: 100,
-      ),
-    );
   }
 }
