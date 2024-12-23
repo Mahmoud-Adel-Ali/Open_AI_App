@@ -84,13 +84,13 @@ class ChatingCubit extends Cubit<ChatingState> {
     }
   }
 
-// upload image to AI model
-// pick multiple image
+  // pick multiple image
   Future<void> pickImages() async {
     final List<XFile> images = await ImagePicker().pickMultiImage(
       imageQuality: 95,
       maxHeight: 800,
       maxWidth: 800,
+      limit: 2,
     );
     if (images.isNotEmpty) {
       clearImages();
@@ -99,10 +99,9 @@ class ChatingCubit extends Cubit<ChatingState> {
     }
   }
 
-//delete image by index
+  //delete image by index
   void deleteImage(XFile item) {
     imagesList.remove(item);
-    //removeAt(index);
     emit(PickImagesSuccess());
   }
 
