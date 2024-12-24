@@ -14,11 +14,7 @@ class CustomSelectedImageBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: Image.file(
-        File(path),
-        fit: BoxFit.cover,
-        width: 100,
-      ),
+      child: Image.file(File(path), fit: BoxFit.cover, width: 100),
     );
   }
 }
