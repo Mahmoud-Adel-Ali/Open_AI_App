@@ -12,7 +12,7 @@ class ChatViewBody extends StatelessWidget {
     return const Column(
       children: [
         Expanded(child: ChatListView()),
-        // AILoadingMessage(),
+        AILoadingMessage(),
         CustomImagesListViewBlocBuilder(),
         SendMessageSection(),
       ],
