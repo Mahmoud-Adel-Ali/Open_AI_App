@@ -14,6 +14,7 @@ class ChatingCubit extends Cubit<ChatingState> {
   TextEditingController chatTextFeild = TextEditingController();
   List<XFile> imagesList = [];
   List<ChatModel> currentChat = [];
+  ChatHistoryIdModel? currentChatHistoryId;
   List<ChatHistoryIdModel> chatHistoryIds = [];
   // generative model for the text
   late GenerativeModel _textModel;
@@ -41,27 +42,30 @@ class ChatingCubit extends Cubit<ChatingState> {
   void getChatHistoryIds() {
     chatHistoryIds.clear();
     chatHistoryIds = HiveServices.getChatHistoryIds();
+    currentChatHistoryId = currentChatHistoryId ?? chatHistoryIds.first;
     emit(GetChatHistoryIdsSuccess());
   }
 
   //open last chat room
   Future<void> openLastChatRoom() async {
     if (chatHistoryIds.isNotEmpty) {
-      await openChatRoom(chatHistoryIds.first.chatHistoryId);
+      await openChatRoom(chatHistoryIds.first);
     } else {
       await openNewChatRoom();
     }
   }
 
   //open any founded chat room
-  Future<void> openChatRoom(String chatHistoryId) async {
-    await HiveServices.openChatBox(boxName: chatHistoryId);
-    await setCurrentChatRoom(chatHistoryId);
+  Future<void> openChatRoom(ChatHistoryIdModel chatHistoryIdModel) async {
+    await HiveServices.openChatBox(boxName: chatHistoryIdModel.chatHistoryId);
+    await setCurrentChatRoom(chatHistoryIdModel);
     emit(OpenChatRoomSuccess());
   }
 
-  Future<void> setCurrentChatRoom(String chatHistoryId) async {
-    currentChat = await HiveServices.getChatsWithIdBox(boxName: chatHistoryId);
+  Future<void> setCurrentChatRoom(ChatHistoryIdModel chatHistoryId) async {
+    currentChat = await HiveServices.getChatsWithIdBox(
+        boxName: chatHistoryId.chatHistoryId);
+    currentChatHistoryId = chatHistoryIds.first;
   }
 
   //open new chat room
@@ -69,12 +73,13 @@ class ChatingCubit extends Cubit<ChatingState> {
     HiveServices.addChatHistory();
     getChatHistoryIds();
     await HiveServices.openChatBox(boxName: chatHistoryIds.first.chatHistoryId);
-    resetCurrentChatRoom();
+    resetCurrentChatRoom(chatHistoryIds.first);
     emit(OpenNewChatRoomSuccess());
   }
 
-  void resetCurrentChatRoom() {
+  void resetCurrentChatRoom(ChatHistoryIdModel chatHistoryId) {
     currentChat = [];
+    currentChatHistoryId = chatHistoryId;
   }
 
   void deleteChatRoom(ChatHistoryIdModel chatHistory) async {
