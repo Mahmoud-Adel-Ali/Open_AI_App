@@ -65,7 +65,7 @@ class ChatingCubit extends Cubit<ChatingState> {
   Future<void> setCurrentChatRoom(ChatHistoryIdModel chatHistoryId) async {
     currentChat = await HiveServices.getChatsWithIdBox(
         boxName: chatHistoryId.chatHistoryId);
-    currentChatHistoryId = chatHistoryIds.first;
+    currentChatHistoryId = chatHistoryId;
   }
 
   //open new chat room

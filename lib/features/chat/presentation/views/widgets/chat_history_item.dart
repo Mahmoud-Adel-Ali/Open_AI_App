@@ -46,7 +46,12 @@ class ChatHistoryItem extends StatelessWidget {
                 return CustomDialog(
                   discription:
                       'Are you sure you want to close current chat page and open other conversation? 🙂',
-                  onTapYes: () {},
+                  onTapYes: () {
+                    context
+                        .read<ChatingCubit>()
+                        .openChatRoom(chatHistoryIdModel);
+                    Navigator.pop(context);
+                  },
                 );
               },
             );
