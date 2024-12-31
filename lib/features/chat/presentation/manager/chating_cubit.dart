@@ -86,6 +86,9 @@ class ChatingCubit extends Cubit<ChatingState> {
     if (chatHistoryIds.length > 1) {
       await HiveServices.deleteChatHistory(chatHistory);
       getChatHistoryIds();
+      if (chatHistory == currentChatHistoryId) {
+        openLastChatRoom();
+      }
     }
   }
 
