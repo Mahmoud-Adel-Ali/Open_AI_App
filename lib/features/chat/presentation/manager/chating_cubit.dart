@@ -4,8 +4,6 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_ai_app/core/api/api_keys.dart';
 import 'package:open_ai_app/core/hive/hive_services.dart';
-import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
-import 'package:open_ai_app/features/chat/data/models/chat_model.dart';
 
 import 'chating_state.dart';
 
