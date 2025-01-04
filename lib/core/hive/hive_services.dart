@@ -62,10 +62,10 @@ abstract class HiveServices {
   }
 
   // get chat models with id box
-  static Future<List<ChatModel>> getChatsWithIdBox({
+  static List<ChatModel> getChatsWithIdBox({
     required String boxName,
-  }) async {
-    await openChatBox(boxName: boxName);
+  }) {
+    // await openChatBox(boxName: boxName);
     var chatBox = Hive.box<ChatModel>(boxName);
     List<ChatModel> chats = chatBox.values.toList();
     return chats;

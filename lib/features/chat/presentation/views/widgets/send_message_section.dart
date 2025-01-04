@@ -24,7 +24,7 @@ class SendMessageSection extends StatelessWidget {
               hintTxt: 'Type your message here...',
               suffix: IconButton(
                 onPressed: () {
-                  // TODO: Implement send message functionality
+                  context.read<ChatingCubit>().sendMessageToAI();
                 },
                 icon: const Icon(Icons.send_outlined),
               ),

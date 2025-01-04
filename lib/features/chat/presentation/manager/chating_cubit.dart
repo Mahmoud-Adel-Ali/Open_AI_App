@@ -19,6 +19,7 @@ class ChatingCubit extends Cubit<ChatingState> {
   // generative model for the text
   late GenerativeModel _textModel;
   Future<void> sendMessageToAI() async {
+    emit(SendMessageToAiLoading());
     _textModel = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
       apiKey: ApiKeys.apiKey,
@@ -34,8 +35,24 @@ class ChatingCubit extends Cubit<ChatingState> {
       imagesUrls: [],
       dateTime: DateTime.now(),
     );
-    currentChat.add(chatModel);
-    emit(AddNewChatModel());
+    chatTextFeild.clear();
+
+    sendMessageToHiveAndGetAllMessage(chatModel);
+    emit(SendMessageToAiSuccess());
+  }
+
+  sendMessageToHiveAndGetAllMessage(ChatModel chatModel) {
+    HiveServices.addChatModelToChatBox(
+      chatModel,
+      currentChatHistoryId!.chatHistoryId,
+    );
+    getChatModelsFromHive();
+  }
+
+  getChatModelsFromHive() {
+    currentChat = HiveServices.getChatsWithIdBox(
+        boxName: currentChatHistoryId!.chatHistoryId);
+    emit(GetChatModelsFromHiveSuccess());
   }
 
   //get chat history ids
