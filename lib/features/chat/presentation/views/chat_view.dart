@@ -33,6 +33,12 @@ class _ChatViewState extends State<ChatView> {
         },
         icon: const Icon(Icons.menu),
       ),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
     );
   }
 }
