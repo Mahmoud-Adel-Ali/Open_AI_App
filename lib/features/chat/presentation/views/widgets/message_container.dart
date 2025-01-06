@@ -28,6 +28,7 @@ class MessageContainer extends StatelessWidget {
       ),
       child: Text(
         message,
+        textAlign: TextAlign.right,
         style: Styless.textSimeBold14.copyWith(color: textColor),
       ),
     );
