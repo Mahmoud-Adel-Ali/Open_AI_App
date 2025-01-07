@@ -21,6 +21,10 @@ class SendMessageSection extends StatelessWidget {
           Expanded(
             child: CustomTextFormField(
               controller: context.read<ChatingCubit>().chatTextFeild,
+              validator: (p0) {
+                if (p0?.isEmpty ?? true) return 'Please enter a message.';
+                return null;
+              },
               hintTxt: 'Type your message here...',
               suffix: IconButton(
                 onPressed: () {
