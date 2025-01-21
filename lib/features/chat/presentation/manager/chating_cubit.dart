@@ -26,19 +26,23 @@ class ChatingCubit extends Cubit<ChatingState> {
     );
 
     final content = [Content.text(chatTextFeild.text)];
-    final GenerateContentResponse response =
-        await _textModel.generateContent(content);
-    final ChatModel chatModel = ChatModel(
-      chatId: response.hashCode.toString(),
-      message: chatTextFeild.text,
-      response: response.text ?? "No Answer",
-      imagesUrls: [],
-      dateTime: DateTime.now(),
-    );
-    chatTextFeild.clear();
+    try {
+      final GenerateContentResponse response =
+          await _textModel.generateContent(content);
+      final ChatModel chatModel = ChatModel(
+        chatId: response.hashCode.toString(),
+        message: chatTextFeild.text,
+        response: response.text ?? "No Answer",
+        imagesUrls: [],
+        dateTime: DateTime.now(),
+      );
+      chatTextFeild.clear();
 
-    sendMessageToHiveAndGetAllMessage(chatModel);
-    emit(SendMessageToAiSuccess());
+      sendMessageToHiveAndGetAllMessage(chatModel);
+      emit(SendMessageToAiSuccess());
+    } on Exception catch (e) {
+      emit(SendMessageToAiFailure(error: e.toString()));
+    }
   }
 
   sendMessageToHiveAndGetAllMessage(ChatModel chatModel) {
