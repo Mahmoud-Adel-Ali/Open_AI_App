@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_ai_app/features/chat/presentation/manager/chating_cubit.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_list_view_item.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/custom_loading_section.dart';
-
 import '../../../data/models/chat_model.dart';
+import '../../manager/chating_cubit.dart';
 import '../../manager/chating_state.dart';
+import 'chat_list_view_item.dart';
+import 'custom_loading_section.dart';
 
 class ChatListView extends StatefulWidget {
   const ChatListView({super.key});
@@ -19,19 +18,22 @@ class _ChatListViewState extends State<ChatListView> {
 
   @override
   void dispose() {
-    _scrollController.dispose(); // Dispose the controller
+    _scrollController.dispose();
     super.dispose();
   }
 
   void _scrollToBottom() {
     // Make sure the list is rendered before scrolling
-    Future.delayed(const Duration(milliseconds: 100), () {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
-    });
+    Future.delayed(
+      const Duration(milliseconds: 100),
+      () {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      },
+    );
   }
 
   @override
