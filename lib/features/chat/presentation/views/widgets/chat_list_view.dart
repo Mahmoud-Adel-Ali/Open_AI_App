@@ -55,7 +55,7 @@ class _ChatListViewState extends State<ChatListView> {
                 );
               },
             ),
-            state is! SendMessageToAiLoading
+            state is SendMessageToAiLoading
                 ? const SliverToBoxAdapter(child: CustomLoadingSection())
                 : const SliverToBoxAdapter(),
           ],
