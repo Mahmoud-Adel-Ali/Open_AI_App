@@ -12,7 +12,7 @@ class CustomLoadingSection extends StatelessWidget {
     return Column(
       children: [
         UserMessage(
-            message: context.read<ChatingCubit>().chatTextFeild.text,
+            message: context.read<ChatingCubit>().message,
             dateTime: DateTime.now()),
         const AILoadingMessage(),
       ],

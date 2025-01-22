@@ -18,26 +18,27 @@ class ChatingCubit extends Cubit<ChatingState> {
   List<ChatHistoryIdModel> chatHistoryIds = [];
   // generative model for the text
   late GenerativeModel _textModel;
+  String message = '';
   Future<void> sendMessageToAI() async {
+    message = chatTextFeild.text;
+    chatTextFeild.clear();
     emit(SendMessageToAiLoading());
     _textModel = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
       apiKey: ApiKeys.apiKey,
     );
 
-    final content = [Content.text(chatTextFeild.text)];
+    final content = [Content.text(message)];
     try {
       final GenerateContentResponse response =
           await _textModel.generateContent(content);
       final ChatModel chatModel = ChatModel(
         chatId: response.hashCode.toString(),
-        message: chatTextFeild.text,
+        message: message,
         response: response.text ?? "No Answer",
         imagesUrls: [],
         dateTime: DateTime.now(),
       );
-      chatTextFeild.clear();
-
       sendMessageToHiveAndGetAllMessage(chatModel);
       emit(SendMessageToAiSuccess());
     } on Exception catch (e) {
