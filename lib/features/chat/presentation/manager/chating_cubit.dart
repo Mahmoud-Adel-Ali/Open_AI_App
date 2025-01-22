@@ -59,6 +59,10 @@ class ChatingCubit extends Cubit<ChatingState> {
   void getChatHistoryIds() {
     chatHistoryIds.clear();
     chatHistoryIds = HiveServices.getChatHistoryIds();
+    if (chatHistoryIds.isEmpty) {
+      openNewChatRoom();
+      chatHistoryIds = HiveServices.getChatHistoryIds();
+    }
     currentChatHistoryId = currentChatHistoryId ?? chatHistoryIds.first;
     emit(GetChatHistoryIdsSuccess());
   }
@@ -80,8 +84,8 @@ class ChatingCubit extends Cubit<ChatingState> {
   }
 
   Future<void> setCurrentChatRoom(ChatHistoryIdModel chatHistoryId) async {
-    currentChat = await HiveServices.getChatsWithIdBox(
-        boxName: chatHistoryId.chatHistoryId);
+    currentChat =
+        HiveServices.getChatsWithIdBox(boxName: chatHistoryId.chatHistoryId);
     currentChatHistoryId = chatHistoryId;
   }
 
