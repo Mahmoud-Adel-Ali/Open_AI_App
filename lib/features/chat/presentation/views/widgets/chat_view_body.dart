@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/chat_list_view.dart';
+import 'chat_list_view.dart';
 import 'custom_images_list_view_bloc_builder.dart';
 import 'send_message_section.dart';
 
