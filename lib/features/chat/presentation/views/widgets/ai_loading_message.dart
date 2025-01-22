@@ -21,9 +21,9 @@ class AILoadingMessage extends StatelessWidget {
           const SizedBox(width: 12),
           SizedBox(
             width: 50.w,
-            child: SpinKitThreeInOut(
-              color: Theme.of(context).colorScheme.onSecondary,
-              size: 20.0.sp,
+            child: SpinKitThreeBounce(
+              color: Theme.of(context).colorScheme.onSurface,
+              size: 30.0.sp,
             ),
           ),
         ],
