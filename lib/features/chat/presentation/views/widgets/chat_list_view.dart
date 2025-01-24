@@ -23,7 +23,6 @@ class _ChatListViewState extends State<ChatListView> {
   }
 
   void _scrollToBottom() {
-    // Make sure the list is rendered before scrolling
     Future.delayed(
       const Duration(milliseconds: 100),
       () {
