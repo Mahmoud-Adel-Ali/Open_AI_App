@@ -23,13 +23,18 @@ class SendMessageSection extends StatelessWidget {
             child: CustomTextFormField(
               controller: context.read<ChatingCubit>().chatTextFeild,
               hintTxt: 'Type your message here...',
+              validator: (text) {
+                if (text == null || text.isEmpty) {
+                  return null;
+                } else if (checkEmptyText(text)) {
+                  return 'I need some information to help you';
+                }
+                return null;
+              },
               suffix: IconButton(
                 onPressed: () {
-                  if (context
-                      .read<ChatingCubit>()
-                      .chatTextFeild
-                      .text
-                      .isNotEmpty) {
+                  String text = context.read<ChatingCubit>().chatTextFeild.text;
+                  if (text.isNotEmpty && !checkEmptyText(text)) {
                     context.read<ChatingCubit>().sendMessageToAI();
                   }
                 },
@@ -41,4 +46,6 @@ class SendMessageSection extends StatelessWidget {
       ),
     );
   }
+
+  bool checkEmptyText(String text) => RegExp(r'^[ \n]*$').hasMatch(text);
 }
