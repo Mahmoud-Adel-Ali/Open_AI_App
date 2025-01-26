@@ -1,8 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/features/chat/presentation/views/chat_view.dart';
-
 import '../../../../core/utils/app_images.dart';
+import '../../../chat/presentation/views/chat_view.dart';
 import 'widgets/onboarding_view_body.dart';
 
 class OnboardingView extends StatefulWidget {

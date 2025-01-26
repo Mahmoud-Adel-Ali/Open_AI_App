@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/core/utils/app_colors.dart';
+import 'app_colors.dart';
 
 abstract class Styless {
   //10

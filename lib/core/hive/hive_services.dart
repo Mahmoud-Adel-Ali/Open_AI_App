@@ -1,8 +1,9 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:open_ai_app/core/hive/hive_boxs.dart';
-import 'package:open_ai_app/features/chat/data/models/chat_history_id_model.dart';
-import 'package:open_ai_app/features/chat/data/models/chat_model.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../features/chat/data/models/chat_history_id_model.dart';
+import '../../features/chat/data/models/chat_model.dart';
+import 'hive_boxs.dart';
 
 abstract class HiveServices {
   static void registerAdapters() {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../manager/chating_cubit.dart';
-// ignore: unused_import
-import 'custom_loading_section.dart';
 import 'custom_text_form_field.dart';
 import 'pick_image_icon.dart';
 

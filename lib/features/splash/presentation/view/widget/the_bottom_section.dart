@@ -3,8 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
-import 'package:open_ai_app/features/onboarding/presentation/views/onboarding_view.dart';
-
+import '../../../../onboarding/presentation/views/onboarding_view.dart';
 import 'custom_bottom_section_item.dart';
 
 class TheBottomSection extends StatefulWidget {

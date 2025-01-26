@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'rps_custom_painter.dart';
 
 class CustomBottomShape extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/widgets/custom_bottom_shap.dart';
 
 class CustomBottomBottomSectionItem extends StatelessWidget {
