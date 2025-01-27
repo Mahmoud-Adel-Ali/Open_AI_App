@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:typed_data';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -19,6 +22,15 @@ class ChatingCubit extends Cubit<ChatingState> {
   // generative model for the text
   late GenerativeModel _textModel;
   String message = '';
+  prepareConversation() {
+    if (imagesList.isEmpty) {
+      sendMessageToAI();
+    } else {
+      sendMessageAndImagesToAI();
+    }
+  }
+
+  // only text
   Future<void> sendMessageToAI() async {
     message = chatTextFeild.text;
     chatTextFeild.clear();
@@ -39,6 +51,66 @@ class ChatingCubit extends Cubit<ChatingState> {
         imagesUrls: [],
         dateTime: DateTime.now(),
       );
+      sendMessageToHiveAndGetAllMessage(chatModel);
+      emit(SendMessageToAiSuccess());
+    } on Exception catch (e) {
+      emit(SendMessageToAiFailure(error: e.toString()));
+    }
+  }
+
+// text and images
+  Future<void> sendMessageAndImagesToAI() async {
+    message = chatTextFeild.text;
+    chatTextFeild.clear();
+    emit(SendMessageToAiLoading());
+    _textModel = GenerativeModel(
+      model: 'gemini-1.5-flash-latest',
+      apiKey: ApiKeys.apiKey,
+    );
+
+    // generate image from input message
+    // handles both text and images in this case
+
+    // 0 - To work with the image data in a format suitable for processing or sending over a network
+    // 1-  converting each image into byte data
+    final images = imagesList
+        .map(
+          (image) => image.readAsBytes(),
+        )
+        .toList(growable: false);
+
+    // 2- waits for all image reading operations to complete
+    final imagesBytes = await Future.wait(images);
+
+    // 3- creates a list of DataPart objects, where each image is represented in image/jpeg format
+    // DataPart : package the byte data along with other information,
+    // such as the file type (in this case, 'image/jpeg'),
+    // Each DataPart represents an individual image with its byte data and its format.
+    final imagesParts = imagesBytes
+        .map((bytes) => DataPart('image/jpeg', Uint8List.fromList(bytes)))
+        .toList();
+
+    // 4- converts the input string message into a TextPart
+    final prompt = TextPart(message);
+    // ignore: unused_local_variable
+    final content = [
+      Content.multi(
+        [prompt, ...imagesParts],
+      )
+    ];
+    // send content
+    try {
+      final GenerateContentResponse response =
+          await _textModel.generateContent(content);
+      final ChatModel chatModel = ChatModel(
+        chatId: response.hashCode.toString(),
+        message: message,
+        response: response.text ?? "No Answer",
+        imagesUrls: getImagesUrls(isTextOnly: imagesList.isEmpty),
+        dateTime: DateTime.now(),
+      );
+      log('chatModel.toString() = ');
+      log(chatModel.toString());
       sendMessageToHiveAndGetAllMessage(chatModel);
       emit(SendMessageToAiSuccess());
     } on Exception catch (e) {
@@ -131,6 +203,17 @@ class ChatingCubit extends Cubit<ChatingState> {
       imagesList.addAll(images);
       emit(PickImagesSuccess());
     }
+  }
+
+  //change image from XFile to url
+  List<String> getImagesUrls({required bool isTextOnly}) {
+    List<String> imagesUrls = [];
+    if (!isTextOnly) {
+      for (var image in imagesList) {
+        imagesUrls.add(image.path);
+      }
+    }
+    return imagesUrls;
   }
 
   //delete image by index

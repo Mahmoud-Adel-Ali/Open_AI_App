@@ -33,7 +33,7 @@ class SendMessageSection extends StatelessWidget {
                 onPressed: () {
                   String text = context.read<ChatingCubit>().chatTextFeild.text;
                   if (text.isNotEmpty && !checkEmptyText(text)) {
-                    context.read<ChatingCubit>().sendMessageToAI();
+                    context.read<ChatingCubit>().prepareConversation();
                   }
                 },
                 icon: const Icon(Icons.send_outlined),
