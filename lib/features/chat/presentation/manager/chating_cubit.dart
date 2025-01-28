@@ -110,7 +110,8 @@ class ChatingCubit extends Cubit<ChatingState> {
         dateTime: DateTime.now(),
       );
       log('chatModel.toString() = ');
-      log(chatModel.toString());
+      // ignore: avoid_print
+      print(chatModel.toString());
       sendMessageToHiveAndGetAllMessage(chatModel);
       emit(SendMessageToAiSuccess());
     } on Exception catch (e) {
