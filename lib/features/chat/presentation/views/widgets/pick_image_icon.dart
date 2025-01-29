@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manager/chating_cubit.dart';
+import '../../manager/chatting_cubit.dart';
 
 class PickImageIcon extends StatefulWidget {
   const PickImageIcon({
@@ -23,7 +23,7 @@ class _PickImageIconState extends State<PickImageIcon> {
             : () {
                 isActive = true;
                 setState(() {});
-                context.read<ChatingCubit>().pickImages().then(
+                context.read<ChattingCubit>().pickImages().then(
                   (value) {
                     isActive = false;
                     setState(() {});

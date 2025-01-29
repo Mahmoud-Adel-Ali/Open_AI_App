@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/styless.dart';
 import '../../../data/models/chat_history_id_model.dart';
-import '../../manager/chating_cubit.dart';
+import '../../manager/chatting_cubit.dart';
 import 'custom_dialog.dart';
 
 class ChatHistoryItem extends StatelessWidget {
@@ -44,11 +44,11 @@ class ChatHistoryItem extends StatelessWidget {
               context: context,
               builder: (context) {
                 return CustomDialog(
-                  discription:
+                  description:
                       'Are you sure you want to close current chat page and open other conversation? 🙂',
                   onTapYes: () {
                     context
-                        .read<ChatingCubit>()
+                        .read<ChattingCubit>()
                         .openChatRoom(chatHistoryIdModel);
                     Navigator.pop(context);
                   },
@@ -72,7 +72,9 @@ class ChatHistoryItem extends StatelessWidget {
           children: [
             SimpleDialogOption(
               onPressed: () {
-                context.read<ChatingCubit>().deleteChatRoom(chatHistoryIdModel);
+                context
+                    .read<ChattingCubit>()
+                    .deleteChatRoom(chatHistoryIdModel);
                 Navigator.pop(context);
               },
               child: const Row(

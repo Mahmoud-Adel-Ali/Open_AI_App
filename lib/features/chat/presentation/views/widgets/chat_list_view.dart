@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/models/chat_model.dart';
-import '../../manager/chating_cubit.dart';
-import '../../manager/chating_state.dart';
+import '../../manager/chatting_cubit.dart';
+import '../../manager/chatting_state.dart';
 import 'chat_list_view_item.dart';
 import 'custom_loading_section.dart';
 
@@ -37,9 +37,9 @@ class _ChatListViewState extends State<ChatListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatingCubit, ChatingState>(
+    return BlocBuilder<ChattingCubit, ChattingState>(
       builder: (context, state) {
-        List<ChatModel> items = context.read<ChatingCubit>().currentChat;
+        List<ChatModel> items = context.read<ChattingCubit>().currentChat;
         if (items.isNotEmpty) {
           _scrollToBottom();
         }

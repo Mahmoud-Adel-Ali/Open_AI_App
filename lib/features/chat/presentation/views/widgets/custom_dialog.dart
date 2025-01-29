@@ -6,10 +6,10 @@ import 'custom_elevated_button.dart';
 class CustomDialog extends StatelessWidget {
   const CustomDialog({
     super.key,
-    required this.discription,
+    required this.description,
     this.onTapYes,
   });
-  final String discription;
+  final String description;
   final void Function()? onTapYes;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CustomDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              discription,
+              description,
               style: Styless.textMedium20,
               textAlign: TextAlign.center,
             ),

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_cubit.dart';
 import 'core/theme/theme_state.dart';
-import 'features/chat/presentation/manager/chating_cubit.dart';
+import 'features/chat/presentation/manager/chatting_cubit.dart';
 import 'features/splash/presentation/view/splash_view.dart';
 
 class OpenAiApp extends StatelessWidget {
@@ -18,8 +18,8 @@ class OpenAiApp extends StatelessWidget {
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit()..getTheme(),
         ),
-        BlocProvider<ChatingCubit>(
-          create: (context) => ChatingCubit()
+        BlocProvider<ChattingCubit>(
+          create: (context) => ChattingCubit()
             ..getChatHistoryIds()
             ..openLastChatRoom(),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manager/chating_cubit.dart';
-import '../../manager/chating_state.dart';
+import '../../manager/chatting_cubit.dart';
+import '../../manager/chatting_state.dart';
 import 'chat_history_item.dart';
 
 class ChatHistoryBody extends StatelessWidget {
@@ -9,9 +9,9 @@ class ChatHistoryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatingCubit, ChatingState>(
+    return BlocBuilder<ChattingCubit, ChattingState>(
       builder: (context, state) {
-        var items = context.read<ChatingCubit>().chatHistoryIds;
+        var items = context.read<ChattingCubit>().chatHistoryIds;
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

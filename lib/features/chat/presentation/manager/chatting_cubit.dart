@@ -10,11 +10,11 @@ import 'package:open_ai_app/core/hive/hive_services.dart';
 
 import '../../data/models/chat_history_id_model.dart';
 import '../../data/models/chat_model.dart';
-import 'chating_state.dart';
+import 'chatting_state.dart';
 
-class ChatingCubit extends Cubit<ChatingState> {
-  ChatingCubit() : super(ChatingInitial());
-  TextEditingController chatTextFeild = TextEditingController();
+class ChattingCubit extends Cubit<ChattingState> {
+  ChattingCubit() : super(ChattingInitial());
+  TextEditingController chatTextField = TextEditingController();
   List<XFile> imagesList = [];
   List<ChatModel> currentChat = [];
   ChatHistoryIdModel? currentChatHistoryId;
@@ -32,8 +32,8 @@ class ChatingCubit extends Cubit<ChatingState> {
 
   // only text
   Future<void> sendMessageToAI() async {
-    message = chatTextFeild.text;
-    chatTextFeild.clear();
+    message = chatTextField.text;
+    chatTextField.clear();
     emit(SendMessageToAiLoading());
     _textModel = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
@@ -60,8 +60,8 @@ class ChatingCubit extends Cubit<ChatingState> {
 
 // text and images
   Future<void> sendMessageAndImagesToAI() async {
-    message = chatTextFeild.text;
-    chatTextFeild.clear();
+    message = chatTextField.text;
+    chatTextField.clear();
     emit(SendMessageToAiLoading());
     _textModel = GenerativeModel(
       model: 'gemini-1.5-flash-latest',

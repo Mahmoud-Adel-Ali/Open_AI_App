@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manager/chating_cubit.dart';
+import '../../manager/chatting_cubit.dart';
 import 'custom_text_form_field.dart';
 import 'pick_image_icon.dart';
 
@@ -19,7 +19,7 @@ class SendMessageSection extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: CustomTextFormField(
-              controller: context.read<ChatingCubit>().chatTextFeild,
+              controller: context.read<ChattingCubit>().chatTextField,
               hintTxt: 'Type your message here...',
               validator: (text) {
                 if (text == null || text.isEmpty) {
@@ -31,9 +31,9 @@ class SendMessageSection extends StatelessWidget {
               },
               suffix: IconButton(
                 onPressed: () {
-                  String text = context.read<ChatingCubit>().chatTextFeild.text;
+                  String text = context.read<ChattingCubit>().chatTextField.text;
                   if (text.isNotEmpty && !checkEmptyText(text)) {
-                    context.read<ChatingCubit>().prepareConversation();
+                    context.read<ChattingCubit>().prepareConversation();
                   }
                 },
                 icon: const Icon(Icons.send_outlined),
