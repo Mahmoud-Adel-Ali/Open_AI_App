@@ -36,13 +36,13 @@ class CustomDialog extends StatelessWidget {
                 CustomElevatedButton(
                   text: "No  ❌",
                   color: AppColors.error,
-                  onPerssed: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
                 CustomElevatedButton(
                   text: 'Yes  ✅',
-                  onPerssed: onTapYes,
+                  onPressed: onTapYes,
                 ),
               ],
             ),

@@ -9,13 +9,13 @@ abstract class Styless {
     fontFamily: 'Poppins',
   );
   //12
-  static const TextStyle textSimeBold12 = TextStyle(
+  static const TextStyle textSemiBold12 = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w600,
     fontFamily: 'Poppins',
   );
   //14
-  static const TextStyle textSimeBold14 = TextStyle(
+  static const TextStyle textSemiBold14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
     fontFamily: 'Poppins',
@@ -26,7 +26,7 @@ abstract class Styless {
     fontFamily: 'Poppins',
   );
   //18
-  static const TextStyle textSimeBold18 = TextStyle(
+  static const TextStyle textSemiBold18 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     fontFamily: 'Poppins',

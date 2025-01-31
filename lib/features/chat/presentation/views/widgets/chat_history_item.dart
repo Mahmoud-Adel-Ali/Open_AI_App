@@ -27,7 +27,7 @@ class ChatHistoryItem extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           title: Text(
             chatHistoryIdModel.chatName ?? chatHistoryIdModel.chatHistoryId,
-            style: Styless.textSimeBold18,
+            style: Styless.textSemiBold18,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
