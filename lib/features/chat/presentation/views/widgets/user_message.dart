@@ -57,6 +57,32 @@ class CustomSavedImages extends StatelessWidget {
                   onTap: () {
                     // Navigate to custom image viewer view
                     // with the list of images
+                    //3️⃣ Flip (3D Rotation) Animation
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(milliseconds: 700),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            CustomImagesViewerView(imagesUrls: imagesUrls!),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return AnimatedBuilder(
+                            animation: animation,
+                            builder: (context, child) {
+                              // Convert to radians
+                              final double rotateValue =
+                                  animation.value * 3.14 * 2;
+                              return Transform(
+                                transform: Matrix4.rotationY(rotateValue),
+                                alignment: Alignment.center,
+                                child: child,
+                              );
+                            },
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
                   },
                   child: Stack(
                     children: [
