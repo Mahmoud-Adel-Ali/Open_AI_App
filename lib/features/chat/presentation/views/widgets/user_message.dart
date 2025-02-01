@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_ai_app/features/chat/presentation/views/custom_images_viewer_view.dart';
 import 'package:open_ai_app/features/chat/presentation/views/widgets/custom_selected_image_box.dart';
 import '../../../../../core/utils/app_images.dart';
 import 'chat_logo.dart';
@@ -54,7 +55,8 @@ class CustomSavedImages extends StatelessWidget {
             ? SizedBox(
                 child: GestureDetector(
                   onTap: () {
-                    // TODO: Navigate to image viewer
+                    // Navigate to custom image viewer view
+                    // with the list of images
                   },
                   child: Stack(
                     children: [
