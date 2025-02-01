@@ -14,6 +14,7 @@ class ChatListViewItem extends StatelessWidget {
         UserMessage(
           message: chatModel.message,
           dateTime: chatModel.dateTime,
+          imagesUrls: chatModel.imagesUrls,
         ),
         AIMessage(
           message: chatModel.response,
