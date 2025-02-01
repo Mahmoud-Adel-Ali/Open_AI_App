@@ -25,22 +25,7 @@ class UserMessage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              imagesUrls != null
-                  ? SizedBox(
-                      height: imagesUrls!.isEmpty ? 0 : 70,
-                      width: MediaQuery.sizeOf(context).width * 0.8,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: imagesUrls?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          return CustomSelectedImageBox(
-                            path: imagesUrls![index],
-                            width: 70,
-                          );
-                        },
-                      ),
-                    )
-                  : const SizedBox(),
+              CustomSavedImages(imagesUrls: imagesUrls),
               const SizedBox(height: 2),
               MessageContainer(
                 message: message,
@@ -54,6 +39,47 @@ class UserMessage extends StatelessWidget {
           const ChatLogo(logo: AppImages.user),
         ],
       ),
+    );
+  }
+}
+
+class CustomSavedImages extends StatelessWidget {
+  const CustomSavedImages({super.key, this.imagesUrls});
+  final List<String>? imagesUrls;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        imagesUrls != null && imagesUrls!.isNotEmpty
+            ? SizedBox(
+                child: GestureDetector(
+                  onTap: () {
+                    // TODO: Navigate to image viewer
+                  },
+                  child: Stack(
+                    children: [
+                      CustomSelectedImageBox(
+                        path: imagesUrls![0],
+                        width: 70,
+                      ),
+                      imagesUrls!.length > 1
+                          ? Positioned(
+                              top: 15,
+                              left: 15,
+                              child: Text(
+                                "+${(imagesUrls!.length - 1).toString()}",
+                                style: TextStyle(
+                                    color: Colors.blue[900], fontSize: 32),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
+                ),
+              )
+            : const SizedBox(),
+      ],
     );
   }
 }
