@@ -54,6 +54,7 @@ class ChattingCubit extends Cubit<ChattingState> {
       sendMessageToHiveAndGetAllMessage(chatModel);
       emit(SendMessageToAiSuccess());
     } on Exception catch (e) {
+      chatTextField = TextEditingController(text: message);
       emit(SendMessageToAiFailure(error: e.toString()));
     }
   }
@@ -109,12 +110,11 @@ class ChattingCubit extends Cubit<ChattingState> {
         imagesUrls: getImagesUrls(isTextOnly: imagesList.isEmpty),
         dateTime: DateTime.now(),
       );
-      log('chatModel.toString() = ');
-      // ignore: avoid_print
-      print(chatModel.toString());
       sendMessageToHiveAndGetAllMessage(chatModel);
+      imagesList.clear();
       emit(SendMessageToAiSuccess());
     } on Exception catch (e) {
+      chatTextField = TextEditingController(text: message);
       emit(SendMessageToAiFailure(error: e.toString()));
     }
   }
