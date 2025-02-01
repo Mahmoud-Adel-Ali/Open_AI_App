@@ -27,7 +27,7 @@ class UserMessage extends StatelessWidget {
             children: [
               imagesUrls != null
                   ? SizedBox(
-                      height: 70,
+                      height: imagesUrls!.isEmpty ? 0 : 70,
                       width: MediaQuery.sizeOf(context).width * 0.8,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
