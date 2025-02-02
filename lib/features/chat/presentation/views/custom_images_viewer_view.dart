@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -35,7 +37,7 @@ class ImageViewerBody extends StatelessWidget {
       scrollPhysics: const BouncingScrollPhysics(),
       builder: (context, index) {
         return PhotoViewGalleryPageOptions(
-          imageProvider: AssetImage(imagesUrls[index]),
+          imageProvider: FileImage(File(imagesUrls[index])),
           initialScale: PhotoViewComputedScale.contained * 0.99,
           maxScale: PhotoViewComputedScale.contained * 2,
           minScale: PhotoViewComputedScale.contained * 0.25,
