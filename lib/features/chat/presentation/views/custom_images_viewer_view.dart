@@ -13,6 +13,7 @@ class CustomImagesViewerView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Images Viewer'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: ImageViewerBody(imagesUrls: imagesUrls),
     );
@@ -26,15 +27,18 @@ class ImageViewerBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PhotoViewGallery.builder(
-      enableRotation: true,
-      backgroundDecoration:
-          BoxDecoration(color: Theme.of(context).colorScheme.primary),
+      // enableRotation: true,
+      backgroundDecoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
+      ),
       itemCount: imagesUrls.length,
       scrollPhysics: const BouncingScrollPhysics(),
       builder: (context, index) {
         return PhotoViewGalleryPageOptions(
           imageProvider: AssetImage(imagesUrls[index]),
           initialScale: PhotoViewComputedScale.contained * 0.99,
+          maxScale: PhotoViewComputedScale.contained * 2,
+          minScale: PhotoViewComputedScale.contained * 0.25,
           heroAttributes: PhotoViewHeroAttributes(tag: index),
           filterQuality: FilterQuality.high,
         );
