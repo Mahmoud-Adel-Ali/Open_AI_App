@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive/hive.dart';
 
 part 'chat_history_id_model.g.dart';
@@ -10,7 +9,7 @@ class ChatHistoryIdModel extends HiveObject {
   @HiveField(1)
   final DateTime dateTime;
   @HiveField(2)
-  final String? chatName;
+  String? chatName;
 
   ChatHistoryIdModel({
     required this.chatHistoryId,
