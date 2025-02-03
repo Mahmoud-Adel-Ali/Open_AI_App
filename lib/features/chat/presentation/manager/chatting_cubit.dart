@@ -129,6 +129,10 @@ class ChattingCubit extends Cubit<ChattingState> {
   getChatModelsFromHive() {
     currentChat = HiveServices.getChatsWithIdBox(
         boxName: currentChatHistoryId!.chatHistoryId);
+    // To sent the name of chat history
+    if (currentChat.isNotEmpty && currentChatHistoryId?.chatName == null) {
+      currentChatHistoryId?.chatName = currentChat[0].message;
+    }
     emit(GetChatModelsFromHiveSuccess());
   }
 
