@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/models/chat_model.dart';
 import '../../manager/chatting_cubit.dart';
 import '../../manager/chatting_state.dart';
 import 'chat_list_view_item.dart';
+import 'custom_empty_chat_widget.dart';
 import 'custom_loading_section.dart';
 
 class ChatListView extends StatefulWidget {
@@ -56,7 +58,11 @@ class _ChatListViewState extends State<ChatListView> {
             ),
             state is SendMessageToAiLoading
                 ? const SliverToBoxAdapter(child: CustomLoadingSection())
-                : const SliverToBoxAdapter(),
+                : SliverToBoxAdapter(
+                    child: context.read<ChattingCubit>().currentChat.isEmpty
+                        ? const CustomEmptyChatWidget()
+                        : const SizedBox(),
+                  ),
           ],
         );
       },
