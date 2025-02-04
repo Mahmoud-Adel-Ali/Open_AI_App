@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:open_ai_app/core/widgets/toast_message.dart';
+
 import '../../../../../core/utils/styless.dart';
 import '../../../data/models/chat_history_id_model.dart';
 import '../../manager/chatting_cubit.dart';
@@ -39,22 +41,35 @@ class ChatHistoryItem extends StatelessWidget {
             icon: const Icon(Icons.more_vert),
           ),
           onTap: () {
-            Navigator.pop(context);
-            showDialog(
-              context: context,
-              builder: (context) {
-                return CustomDialog(
-                  description:
-                      'Are you sure you want to close current chat page and open other conversation? 🙂',
-                  onTapYes: () {
-                    context
-                        .read<ChattingCubit>()
-                        .openChatRoom(chatHistoryIdModel);
-                    Navigator.pop(context);
-                  },
-                );
-              },
-            );
+            if (context
+                    .read<ChattingCubit>()
+                    .currentChatHistoryId
+                    ?.chatHistoryId !=
+                chatHistoryIdModel.chatHistoryId) {
+              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomDialog(
+                    description:
+                        'Are you sure you want to close current chat page and open other conversation? 🙂',
+                    onTapYes: () {
+                      context
+                          .read<ChattingCubit>()
+                          .openChatRoom(chatHistoryIdModel);
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              );
+            } else {
+              showToastMessage(
+                context,
+                msg:
+                    "This chat is open. Do you need a new chat or want to continue another one?",
+                type: MessageType.info,
+              );
+            }
           },
         ),
       ),
