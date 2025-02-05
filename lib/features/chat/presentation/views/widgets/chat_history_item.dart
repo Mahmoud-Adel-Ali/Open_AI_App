@@ -16,6 +16,15 @@ class ChatHistoryItem extends StatelessWidget {
   final ChatHistoryIdModel chatHistoryIdModel;
 
   @override
+  /// A single item in the chat history list.
+  ///
+  /// This widget displays the chat name, date and time of the last message,
+  /// and a more options icon.
+  ///
+  /// When the user taps on the item, the chat page is opened.
+  ///
+  /// If the chat is already open, the user is asked if they want to close the
+  /// current chat page and open the other conversation.
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -28,6 +37,7 @@ class ChatHistoryItem extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           title: Text(
+            // If the chat name is null, use the chat history id as the title.
             chatHistoryIdModel.chatName ?? chatHistoryIdModel.chatHistoryId,
             style: Styless.textSemiBold18,
             maxLines: 1,
@@ -46,6 +56,7 @@ class ChatHistoryItem extends StatelessWidget {
                     .currentChatHistoryId
                     ?.chatHistoryId !=
                 chatHistoryIdModel.chatHistoryId) {
+              // If the chat is not open, open the chat page.
               Navigator.pop(context);
               showDialog(
                 context: context,
@@ -63,6 +74,7 @@ class ChatHistoryItem extends StatelessWidget {
                 },
               );
             } else {
+              // If the chat is already open, show a message to the user.
               showToastMessage(
                 context,
                 msg:
