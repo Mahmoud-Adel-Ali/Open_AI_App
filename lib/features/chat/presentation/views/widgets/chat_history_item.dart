@@ -16,6 +16,7 @@ class ChatHistoryItem extends StatelessWidget {
   final ChatHistoryIdModel chatHistoryIdModel;
 
   @override
+
   /// A single item in the chat history list.
   ///
   /// This widget displays the chat name, date and time of the last message,
@@ -74,6 +75,8 @@ class ChatHistoryItem extends StatelessWidget {
                 },
               );
             } else {
+              //cancle any openf toast
+              hideToast();
               // If the chat is already open, show a message to the user.
               showToastMessage(
                 context,

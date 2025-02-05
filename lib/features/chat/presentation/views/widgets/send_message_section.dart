@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:open_ai_app/core/widgets/toast_message.dart';
+
 import '../../manager/chatting_cubit.dart';
 import '../../manager/chatting_state.dart';
 import 'custom_text_form_field.dart';
@@ -16,7 +17,7 @@ class SendMessageSection extends StatelessWidget {
     return BlocConsumer<ChattingCubit, ChattingState>(
       listener: (context, state) {
         if (state is SendMessageToAiFailure) {
-          showToastMessage(context, msg: "No internet connection ❌");
+          showToastMessage(context, msg: state.error);
         }
       },
       builder: (context, state) {

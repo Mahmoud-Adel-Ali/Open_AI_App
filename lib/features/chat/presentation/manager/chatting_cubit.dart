@@ -18,11 +18,10 @@ class ChattingCubit extends Cubit<ChattingState> {
   List<ChatModel> currentChat = [];
   ChatHistoryIdModel? currentChatHistoryId;
   List<ChatHistoryIdModel> chatHistoryIds = [];
+  // generative model for the text
   late GenerativeModel _textModel;
   String message = '';
-
-  // Prepares the conversation by checking if images are present
-  void prepareConversation() {
+  prepareConversation() {
     if (imagesList.isEmpty) {
       sendMessageToAI();
     } else {
@@ -30,7 +29,7 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Sends a text message to the AI
+  // only text
   Future<void> sendMessageToAI() async {
     message = chatTextField.text;
     chatTextField.clear();
@@ -59,7 +58,7 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Sends a message with text and images to the AI
+// text and images
   Future<void> sendMessageAndImagesToAI() async {
     message = chatTextField.text;
     chatTextField.clear();
@@ -69,22 +68,37 @@ class ChattingCubit extends Cubit<ChattingState> {
       apiKey: ApiKeys.apiKey,
     );
 
-    // Convert images into byte data
-    final images =
-        imagesList.map((image) => image.readAsBytes()).toList(growable: false);
+    // generate image from input message
+    // handles both text and images in this case
+
+    // 0 - To work with the image data in a format suitable for processing or sending over a network
+    // 1-  converting each image into byte data
+    final images = imagesList
+        .map(
+          (image) => image.readAsBytes(),
+        )
+        .toList(growable: false);
+
+    // 2- waits for all image reading operations to complete
     final imagesBytes = await Future.wait(images);
 
-    // Create data parts for images
+    // 3- creates a list of DataPart objects, where each image is represented in image/jpeg format
+    // DataPart : package the byte data along with other information,
+    // such as the file type (in this case, 'image/jpeg'),
+    // Each DataPart represents an individual image with its byte data and its format.
     final imagesParts = imagesBytes
         .map((bytes) => DataPart('image/jpeg', Uint8List.fromList(bytes)))
         .toList();
 
-    // Create content with text and images
+    // 4- converts the input string message into a TextPart
     final prompt = TextPart(message);
+    // ignore: unused_local_variable
     final content = [
-      Content.multi([prompt, ...imagesParts])
+      Content.multi(
+        [prompt, ...imagesParts],
+      )
     ];
-
+    // send content
     try {
       final GenerateContentResponse response =
           await _textModel.generateContent(content);
@@ -104,24 +118,25 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Store message in Hive and fetch all messages
-  void sendMessageToHiveAndGetAllMessage(ChatModel chatModel) {
+  sendMessageToHiveAndGetAllMessage(ChatModel chatModel) {
     HiveServices.addChatModelToChatBox(
-        chatModel, currentChatHistoryId!.chatHistoryId);
+      chatModel,
+      currentChatHistoryId!.chatHistoryId,
+    );
     getChatModelsFromHive();
   }
 
-  // Fetch chat models from Hive storage
-  void getChatModelsFromHive() {
+  getChatModelsFromHive() {
     currentChat = HiveServices.getChatsWithIdBox(
         boxName: currentChatHistoryId!.chatHistoryId);
+    // To sent the name of chat history
     if (currentChat.isNotEmpty && currentChatHistoryId?.chatName == null) {
       currentChatHistoryId?.chatName = currentChat[0].message;
     }
     emit(GetChatModelsFromHiveSuccess());
   }
 
-  // Retrieve chat history IDs
+  //get chat history ids
   void getChatHistoryIds() {
     chatHistoryIds.clear();
     chatHistoryIds = HiveServices.getChatHistoryIds();
@@ -133,7 +148,7 @@ class ChattingCubit extends Cubit<ChattingState> {
     emit(GetChatHistoryIdsSuccess());
   }
 
-  // Open the last chat room
+  //open last chat room
   Future<void> openLastChatRoom() async {
     if (chatHistoryIds.isNotEmpty) {
       await openChatRoom(chatHistoryIds.first);
@@ -142,21 +157,20 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Open a specific chat room
+  //open any founded chat room
   Future<void> openChatRoom(ChatHistoryIdModel chatHistoryIdModel) async {
     await HiveServices.openChatBox(boxName: chatHistoryIdModel.chatHistoryId);
     await setCurrentChatRoom(chatHistoryIdModel);
     emit(OpenChatRoomSuccess());
   }
 
-  // Set the current chat room
   Future<void> setCurrentChatRoom(ChatHistoryIdModel chatHistoryId) async {
     currentChat =
         HiveServices.getChatsWithIdBox(boxName: chatHistoryId.chatHistoryId);
     currentChatHistoryId = chatHistoryId;
   }
 
-  // Open a new chat room
+  //open new chat room
   Future<void> openNewChatRoom() async {
     HiveServices.addChatHistory();
     getChatHistoryIds();
@@ -165,13 +179,11 @@ class ChattingCubit extends Cubit<ChattingState> {
     emit(OpenNewChatRoomSuccess());
   }
 
-  // Reset the current chat room
   void resetCurrentChatRoom(ChatHistoryIdModel chatHistoryId) {
     currentChat = [];
     currentChatHistoryId = chatHistoryId;
   }
 
-  // Delete a chat room
   void deleteChatRoom(ChatHistoryIdModel chatHistory) async {
     if (chatHistoryIds.length > 1) {
       await HiveServices.deleteChatHistory(chatHistory);
@@ -182,7 +194,7 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Pick multiple images
+  // pick multiple image
   Future<void> pickImages() async {
     final List<XFile> images = await ImagePicker().pickMultiImage(
       imageQuality: 95,
@@ -197,7 +209,7 @@ class ChattingCubit extends Cubit<ChattingState> {
     }
   }
 
-  // Convert images from XFile to URLs
+  //change image from XFile to url
   List<String> getImagesUrls({required bool isTextOnly}) {
     List<String> imagesUrls = [];
     if (!isTextOnly) {
@@ -208,13 +220,13 @@ class ChattingCubit extends Cubit<ChattingState> {
     return imagesUrls;
   }
 
-  // Delete an image by index
+  //delete image by index
   void deleteImage(XFile item) {
     imagesList.remove(item);
     emit(PickImagesSuccess());
   }
 
-  // Clear the images list
+  //clear images list
   void clearImages() {
     imagesList.clear();
     emit(PickImagesSuccess());

@@ -30,3 +30,8 @@ getColor(MessageType type) {
 }
 
 enum MessageType { success, error, warning, info }
+
+// hide any opend toast
+void hideToast() {
+  Fluttertoast.cancel();
+}
