@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:open_ai_app/constant.dart';
+import 'package:open_ai_app/core/database/cache_helper.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
 
 import '../../../../../core/widgets/custom_bottom_shap.dart';
+import '../../../../chat/presentation/views/chat_view.dart';
 import '../../../../onboarding/presentation/views/onboarding_view.dart';
 import 'custom_bottom_section_item.dart';
 
@@ -27,11 +30,22 @@ class _TheBottomSectionState extends State<TheBottomSection> {
         counter++;
         if (counter == 4) {
           timer.cancel();
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const OnboardingView(),
-              ));
+          bool onboardingIsViewed =
+              CacheHelper().getBoolean(Constant.onboardingIsViewed) ?? false;
+          if (!onboardingIsViewed) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const OnboardingView(),
+                ));
+            CacheHelper().setBoolean(Constant.onboardingIsViewed, true);
+          } else {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChatView(),
+                ));
+          }
         }
         setState(() {});
       },
@@ -51,7 +65,7 @@ class _TheBottomSectionState extends State<TheBottomSection> {
                 ? CustomBottomBottomSectionItem(height: 400.h)
                 : CustomBottomShape(height: 400.h)
             : SizedBox(),
-        counter == 3 ? const HelloText() : const SizedBox(),
+        counter >= 3 ? const HelloText() : const SizedBox(),
       ],
     );
   }
