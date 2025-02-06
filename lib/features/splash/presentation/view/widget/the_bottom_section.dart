@@ -1,8 +1,11 @@
 import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_ai_app/core/utils/styless.dart';
+
+import '../../../../../core/widgets/custom_bottom_shap.dart';
 import '../../../../onboarding/presentation/views/onboarding_view.dart';
 import 'custom_bottom_section_item.dart';
 
@@ -42,8 +45,13 @@ class _TheBottomSectionState extends State<TheBottomSection> {
       children: [
         counter == 1
             ? CustomBottomBottomSectionItem(height: 200.h)
-            : CustomBottomBottomSectionItem(height: 400.h),
-        counter >= 2 ? const HelloText() : const SizedBox(),
+            : CustomBottomShape(height: 300.h),
+        counter > 1
+            ? counter == 2
+                ? CustomBottomBottomSectionItem(height: 400.h)
+                : CustomBottomShape(height: 400.h)
+            : SizedBox(),
+        counter == 3 ? const HelloText() : const SizedBox(),
       ],
     );
   }
