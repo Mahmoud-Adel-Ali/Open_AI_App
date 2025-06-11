@@ -27,6 +27,7 @@ class AIMessage extends StatelessWidget {
           MessageContainer(
             message: message,
             dateTime: dateTime,
+            isUserMessage: false,
           ),
         ],
       ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:open_ai_app/features/chat/presentation/views/custom_images_viewer_view.dart';
-import 'package:open_ai_app/features/chat/presentation/views/widgets/custom_selected_image_box.dart';
+
 import '../../../../../core/utils/app_images.dart';
+import '../custom_images_viewer_view.dart';
 import 'chat_logo.dart';
+import 'custom_selected_image_box.dart';
 import 'message_container.dart';
 
 class UserMessage extends StatelessWidget {
@@ -31,7 +32,8 @@ class UserMessage extends StatelessWidget {
               MessageContainer(
                 message: message,
                 dateTime: dateTime,
-                color: Theme.of(context).colorScheme.onSurface,
+                isUserMessage: true,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
                 textColor: Theme.of(context).colorScheme.primary,
               ),
             ],
