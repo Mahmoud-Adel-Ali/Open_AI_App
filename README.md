@@ -23,12 +23,6 @@ The **Open Ai Application** is an AI-powered chat app built with Flutter that en
 
 ---
 
-## 📱 Screenshots
-
-> *(Add screenshots here to showcase the app’s UI in light and dark mode, and chat features)*
-
----
-
 ## 🧰 Tech Stack
 
 - **Flutter** — Cross-platform mobile app framework
